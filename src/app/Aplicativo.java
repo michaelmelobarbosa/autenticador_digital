@@ -1,6 +1,6 @@
 package app;
 
-import servico.LeituraDocumento;
+import servico.LeitorDeDocumentos;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ public class Aplicativo {
 
         String path = "AutenticadorDigital.txt";
 
-        LeituraDocumento leituraDocumento = new LeituraDocumento();
-        List<String> palavras = leituraDocumento.leitorDeArquivo(path);
+        LeitorDeDocumentos leitorDeDocumentos = new LeitorDeDocumentos();
+        List<String> palavras = leitorDeDocumentos.leitorDeArquivo(path);
         System.out.println(palavras);
 
     }

@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class LeituraDocumento {
+public class LeitorDeDocumentos {
 
     public List<String> leitorDeArquivo(String path) {
         try {
