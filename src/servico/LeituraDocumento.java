@@ -10,7 +10,6 @@ import java.util.regex.Pattern;
 
 public class LeituraDocumento {
 
-
     public List<String> leitorDeArquivo(String path) {
         try {
             BufferedReader ler_Arquivo = new BufferedReader(new FileReader(path));

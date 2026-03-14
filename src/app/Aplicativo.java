@@ -11,7 +11,6 @@ public class Aplicativo {
 
         LeituraDocumento leituraDocumento = new LeituraDocumento();
         List<String> palavras = leituraDocumento.leitorDeArquivo(path);
-
         System.out.println(palavras);
 
     }
