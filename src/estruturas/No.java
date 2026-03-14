@@ -1,13 +1,13 @@
 package estruturas;
 
 public class No {
-    private int valor;
+    private final String valor;
 
-    public No(int valor) {
+    public No(String valor) {
         this.valor = valor;
     }
 
-    public int getValor() {
+    public String getValor() {
         return valor;
     }
 }

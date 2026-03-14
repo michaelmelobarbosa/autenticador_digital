@@ -23,17 +23,19 @@ public class Arvore {
     }
 
     public void inserir(No novo) {
+        int comparacao = novo.getValor().compareToIgnoreCase(this.no.getValor());
+
         if (isEmpty()) {
             this.no = novo;
         } else {
             Arvore novaArvore = new Arvore(novo);
-            if (novo.getValor() < this.no.getValor()) {
+            if (comparacao < 0) {
                 if (this.esquerda == null) {
                     this.esquerda = novaArvore;
                 } else {
                     this.esquerda.inserir(novo);
                 }
-            } else if (novo.getValor() > this.no.getValor()) {
+            } else if (comparacao > 0) {
                 if (this.direita == null) {
                     this.direita = novaArvore;
                 } else {
