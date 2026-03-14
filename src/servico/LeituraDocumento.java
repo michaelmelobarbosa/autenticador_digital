@@ -4,14 +4,14 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class LeituraDocumento {
-    public static void main(String[] args) {
 
-        String path = "AutenticadorDigital.txt";
 
+    public List<String> leitorDeArquivo(String path) {
         try {
             BufferedReader ler_Arquivo = new BufferedReader(new FileReader(path));
             String linha;
@@ -25,12 +25,14 @@ public class LeituraDocumento {
                 while (matcher.find()) {
                     palavras.add(matcher.group());
                 }
-
+                return palavras;
             }
             System.out.println(palavras);
             ler_Arquivo.close();
         } catch (IOException e) {
             e.printStackTrace();
+
         }
+        return List.of();
     }
 }
