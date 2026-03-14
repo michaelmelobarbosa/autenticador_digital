@@ -11,14 +11,13 @@ import java.util.regex.Pattern;
 public class LeitorDeDocumentos {
 
     public List<String> leitorDeArquivo(String path) {
-        try {
-            BufferedReader ler_Arquivo = new BufferedReader(new FileReader(path));
+        try (BufferedReader ler_Arquivo = new BufferedReader(new FileReader(path))){
             String linha;
-            ArrayList<String> palavras = new ArrayList<String>();
+            ArrayList<String> palavras = new ArrayList<>();
 
             while ((linha = ler_Arquivo.readLine()) != null) {
 
-                Pattern pattern = Pattern.compile("[\\p{L}]+");
+                Pattern pattern = Pattern.compile("\\p{L}+");
                 Matcher matcher = pattern.matcher(linha);
 
                 while (matcher.find()) {
@@ -27,7 +26,6 @@ public class LeitorDeDocumentos {
                 return palavras;
             }
             System.out.println(palavras);
-            ler_Arquivo.close();
         } catch (IOException e) {
             e.printStackTrace();
 
