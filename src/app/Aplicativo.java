@@ -4,8 +4,8 @@ import estruturas.Arvore;
 import estruturas.No;
 import servico.LeitorDeDocumentos;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class Aplicativo {
@@ -14,19 +14,14 @@ public class Aplicativo {
         String path = "AutenticadorDigital.txt";
 
         LeitorDeDocumentos leitorDeDocumentos = new LeitorDeDocumentos();
-        List<String> listaPalavras = leitorDeDocumentos.leitorDeArquivo(path);
-        Collections.reverse(listaPalavras);
-
+        List<String> listaDePalavras = leitorDeDocumentos.leitorDeArquivo(path);
+        Collections.reverse(listaDePalavras);
         Arvore arvore = new Arvore();
-        No no = new No(listaPalavras.get(listaPalavras.size() - 1));
 
-        for (int i = 0; i < listaPalavras.size(); i++) {
-            arvore.inserir(new No(listaPalavras.get(i)));
+        for (String palavra : listaDePalavras) {
+            arvore.inserir(new No(palavra));
         }
 
-
         arvore.imprimirInOrder();
-
-
     }
 }

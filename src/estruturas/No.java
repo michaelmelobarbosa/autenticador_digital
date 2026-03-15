@@ -10,4 +10,9 @@ public class No {
     public String getValor() {
         return valor;
     }
+
+    @Override
+    public String toString() {
+        return valor;
+    }
 }
