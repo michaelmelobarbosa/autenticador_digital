@@ -17,32 +17,46 @@ public class Arvore {
         this.direita = null;
     }
 
-
     public boolean isEmpty() {
         return this.no == null;
     }
 
-    public void inserir(No novo) {
-        int comparacao = novo.getValor().compareToIgnoreCase(this.no.getValor());
 
+    public void inserir(No novoNo) {
         if (isEmpty()) {
-            this.no = novo;
-        } else {
-            Arvore novaArvore = new Arvore(novo);
-            if (comparacao < 0) {
-                if (this.esquerda == null) {
-                    this.esquerda = novaArvore;
-                } else {
-                    this.esquerda.inserir(novo);
-                }
-            } else if (comparacao > 0) {
-                if (this.direita == null) {
-                    this.direita = novaArvore;
-                } else {
-                    this.direita.inserir(novo);
-                }
+            this.no = novoNo;
+            return;
+        }
+
+        int comparacao = novoNo.getValor().compareToIgnoreCase(this.no.getValor());
+        if (comparacao < 0) {
+            if (this.esquerda == null) {
+                this.esquerda = new Arvore(novoNo);
+            } else {
+                this.esquerda.inserir(novoNo);
+            }
+        } else if (comparacao > 0) {
+            if (this.direita == null) {
+                this.direita = new Arvore(novoNo);
+            } else {
+                this.direita.inserir(novoNo);
             }
         }
     }
+
+   public void imprimirInOrder() {
+       imprimirInOrder(this);
+   }
+
+   private void imprimirInOrder(Arvore arvore) {
+       if (arvore == null || arvore.isEmpty()) {
+           return;
+       }
+       imprimirInOrder(arvore.esquerda);
+       System.out.println(arvore.no.getValor());
+       imprimirInOrder(arvore.direita);
+   }
+
+
 
 }
