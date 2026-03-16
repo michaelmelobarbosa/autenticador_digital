@@ -2,19 +2,11 @@ package estruturas;
 
 public class Arvore {
     private No no;
-    private Arvore esquerda;
-    private Arvore direita;
+
 
     public Arvore() {
         this.no = null;
-        this.esquerda = null;
-        this.direita = null;
-    }
 
-    public Arvore(No no) {
-        this.no = no;
-        this.esquerda = null;
-        this.direita = null;
     }
 
     public boolean isEmpty() {
@@ -22,39 +14,48 @@ public class Arvore {
     }
 
 
-    public void inserir(No novoNo) {
+    public void inserir(No novoNo){
+        if (novoNo == null) {
+            return;
+        }
+
         if (isEmpty()) {
             this.no = novoNo;
             return;
         }
 
-        int comparacao = novoNo.getValor().compareToIgnoreCase(this.no.getValor());
+        inserirRec(this.no, novoNo);
+    }
+
+    public void inserirRec(No atual, No novoNo) {
+        int comparacao = novoNo.getValor().compareToIgnoreCase(atual.getValor());
+
         if (comparacao < 0) {
-            if (this.esquerda == null) {
-                this.esquerda = new Arvore(novoNo);
+            if (atual.getEsquerda() == null) {
+                atual.setEsquerda(novoNo);
             } else {
-                this.esquerda.inserir(novoNo);
+                inserirRec(atual.getEsquerda(), novoNo);
             }
         } else if (comparacao > 0) {
-            if (this.direita == null) {
-                this.direita = new Arvore(novoNo);
+            if (atual.getDireita() == null) {
+                atual.setDireita(novoNo);
             } else {
-                this.direita.inserir(novoNo);
+                inserirRec(atual.getDireita(), novoNo);
             }
         }
     }
 
    public void imprimirInOrder() {
-       imprimirInOrder(this);
+       imprimirInOrder(this.no);
    }
 
-   private void imprimirInOrder(Arvore arvore) {
-       if (arvore == null || arvore.isEmpty()) {
+   private void imprimirInOrder(No atual) {
+       if (atual == null) {
            return;
        }
-       imprimirInOrder(arvore.esquerda);
-       System.out.println(arvore.no.getValor());
-       imprimirInOrder(arvore.direita);
+       imprimirInOrder(atual.getEsquerda());
+       System.out.println(atual.getValor());
+       imprimirInOrder(atual.getDireita());
    }
 
 

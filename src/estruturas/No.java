@@ -1,7 +1,9 @@
 package estruturas;
 
 public class No {
-    private final String valor;
+    private String valor;
+    private No esquerda;
+    private No direita;
 
     public No(String valor) {
         this.valor = valor;
@@ -11,8 +13,23 @@ public class No {
         return valor;
     }
 
-    @Override
-    public String toString() {
-        return valor;
+    public void setValor(String valor) {
+        this.valor = valor;
+    }
+
+    public No getEsquerda() {
+        return esquerda;
+    }
+
+    public void setEsquerda(No esquerda) {
+        this.esquerda = esquerda;
+    }
+
+    public No getDireita() {
+        return direita;
+    }
+
+    public void setDireita(No direita) {
+        this.direita = direita;
     }
 }

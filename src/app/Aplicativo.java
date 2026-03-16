@@ -4,7 +4,6 @@ import estruturas.Arvore;
 import estruturas.No;
 import servico.LeitorDeDocumentos;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
