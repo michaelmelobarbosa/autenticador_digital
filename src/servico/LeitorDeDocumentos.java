@@ -1,35 +1,45 @@
 package servico;
 
+import estruturas.Arvore;
+import estruturas.No;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class LeitorDeDocumentos {
 
-    public List<String> leitorDeArquivo(String path) {
-        try (BufferedReader ler_Arquivo = new BufferedReader(new FileReader(path))){
+
+    public List<Arvore> leitorDeArquivo(String path) {
+        List<Arvore> arvores = new ArrayList<>();
+
+        try (BufferedReader ler_Arquivo = new BufferedReader(new FileReader(path))) {
+
             String linha;
-            ArrayList<String> palavras = new ArrayList<>();
 
             while ((linha = ler_Arquivo.readLine()) != null) {
+                Arvore arvore = new Arvore();
 
-                Pattern pattern = Pattern.compile("\\p{L}+");
-                Matcher matcher = pattern.matcher(linha);
+                String[] palavras = linha.split("\\s+");
 
-                while (matcher.find()) {
-                    palavras.add(matcher.group());
+                List<String> linhaTratada = new ArrayList<>();
+
+                for (String palavra : palavras) {
+                    linhaTratada.add(palavra);
                 }
-                return palavras;
+
+                for (int i = linhaTratada.size() - 1; i >= 0; i--) {
+                    arvore.inserir(new No(linhaTratada.get(i)));
+                }
+
+                arvores.add(arvore);
             }
-            System.out.println(palavras);
         } catch (IOException e) {
             e.printStackTrace();
 
         }
-        return List.of();
+        return arvores;
     }
 }

@@ -13,14 +13,6 @@ public class Aplicativo {
         String path = "AutenticadorDigital.txt";
 
         LeitorDeDocumentos leitorDeDocumentos = new LeitorDeDocumentos();
-        List<String> listaDePalavras = leitorDeDocumentos.leitorDeArquivo(path);
-        Collections.reverse(listaDePalavras);
-        Arvore arvore = new Arvore();
 
-        for (String palavra : listaDePalavras) {
-            arvore.inserir(new No(palavra));
-        }
-
-        arvore.imprimirInOrder();
     }
 }

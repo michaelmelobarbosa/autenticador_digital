@@ -1,5 +1,7 @@
 package estruturas;
 
+import java.util.List;
+
 public class No {
     private String valor;
     private No esquerda;
