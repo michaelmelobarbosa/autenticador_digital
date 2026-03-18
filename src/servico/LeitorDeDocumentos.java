@@ -31,7 +31,7 @@ public class LeitorDeDocumentos {
                 }
 
                 for (int i = linhaTratada.size() - 1; i >= 0; i--) {
-                    arvore.inserir(new No(linhaTratada.get(i)));
+                    arvore.inserir(String.valueOf(new No(linhaTratada.get(i))));
                 }
 
                 arvores.add(arvore);
