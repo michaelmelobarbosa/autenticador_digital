@@ -1,7 +1,7 @@
 package servico;
 
 import estruturas.Arvore;
-import estruturas.No;
+import estruturas.NoArvore;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -31,7 +31,7 @@ public class LeitorDeDocumentos {
                 }
 
                 for (int i = linhaTratada.size() - 1; i >= 0; i--) {
-                    arvore.inserir(String.valueOf(new No(linhaTratada.get(i))));
+                    arvore.inserir(String.valueOf(new NoArvore(linhaTratada.get(i))));
                 }
 
                 arvores.add(arvore);

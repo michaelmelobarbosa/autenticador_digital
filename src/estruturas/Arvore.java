@@ -1,7 +1,7 @@
 package estruturas;
 
 public class Arvore {
-    private No raiz;
+    private NoArvore raiz;
 
     public Arvore() {
         this.raiz = null;
@@ -11,29 +11,29 @@ public class Arvore {
         return this.raiz == null;
     }
 
-    public No getRaiz() {
+    public NoArvore getRaiz() {
         return raiz;
     }
 
-    public void setRaiz(No raiz) {
+    public void setRaiz(NoArvore raiz) {
         this.raiz = raiz;
     }
 
-    private int altura(No no) {
+    private int altura(NoArvore no) {
         if (no == null) {
             return 0;
         }
         return no.getAltura();
     }
 
-    private int fatorBalanceamento(No no) {
+    private int fatorBalanceamento(NoArvore no) {
         if (no == null) {
             return 0;
         }
         return altura(no.getEsquerda()) - altura(no.getDireita());
     }
 
-    private void atualizarAltura(No no) {
+    private void atualizarAltura(NoArvore no) {
         if (no == null) {
             return;
         }
@@ -43,9 +43,9 @@ public class Arvore {
         no.setAltura(Math.max(alturaEsq, alturaDir) + 1);
     }
 
-    private No rotacaoDireita(No no) {
-        No x = no.getEsquerda();
-        No T2 = x.getDireita();
+    private NoArvore rotacaoDireita(NoArvore no) {
+        NoArvore x = no.getEsquerda();
+        NoArvore T2 = x.getDireita();
 
         x.setDireita(no);
         no.setEsquerda(T2);
@@ -56,9 +56,9 @@ public class Arvore {
         return x;
     }
 
-    private No rotacaoEsquerda(No no) {
-        No y = no.getDireita();
-        No T2 = y.getEsquerda();
+    private NoArvore rotacaoEsquerda(NoArvore no) {
+        NoArvore y = no.getDireita();
+        NoArvore T2 = y.getEsquerda();
 
         y.setEsquerda(no);
         no.setDireita(T2);
@@ -69,7 +69,7 @@ public class Arvore {
         return y;
     }
 
-    private No balancear(No no) {
+    private NoArvore balancear(NoArvore no) {
         atualizarAltura(no);
         int fb = fatorBalanceamento(no);
 
@@ -97,9 +97,9 @@ public class Arvore {
         this.raiz = inserirRec(this.raiz, valor.trim());
     }
 
-    private No inserirRec(No atual, String novoValor) {
+    private NoArvore inserirRec(NoArvore atual, String novoValor) {
         if (atual == null) {
-            return new No(novoValor);
+            return new NoArvore(novoValor);
         }
 
         int comparacao = novoValor.compareToIgnoreCase(atual.getValor());
@@ -119,7 +119,7 @@ public class Arvore {
         imprimirInOrder(this.raiz);
     }
 
-    private void imprimirInOrder(No atual) {
+    private void imprimirInOrder(NoArvore atual) {
         if (atual == null) {
             return;
         }

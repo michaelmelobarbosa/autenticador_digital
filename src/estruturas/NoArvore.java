@@ -1,12 +1,12 @@
 package estruturas;
 
-public class No {
+public class NoArvore {
     private String valor;
     private int altura;
-    private No esquerda;
-    private No direita;
+    private NoArvore esquerda;
+    private NoArvore direita;
 
-    public No(String valor) {
+    public NoArvore(String valor) {
         this.valor = valor;
         this.altura = 1;
         this.esquerda = null;
@@ -29,19 +29,19 @@ public class No {
         this.altura = altura;
     }
 
-    public No getEsquerda() {
+    public NoArvore getEsquerda() {
         return esquerda;
     }
 
-    public void setEsquerda(No esquerda) {
+    public void setEsquerda(NoArvore esquerda) {
         this.esquerda = esquerda;
     }
 
-    public No getDireita() {
+    public NoArvore getDireita() {
         return direita;
     }
 
-    public void setDireita(No direita) {
+    public void setDireita(NoArvore direita) {
         this.direita = direita;
     }
 }
