@@ -6,14 +6,6 @@ public class PilhaArvore {
 
     private NoPilha topo;
 
-    private class NoPilha {
-        Arvore dado;
-        NoPilha proximo;
-
-        NoPilha(Arvore dado) {
-            this.dado = dado;
-        }
-    }
 
     public PilhaArvore() {
         topo = null;
