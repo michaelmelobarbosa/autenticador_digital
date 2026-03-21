@@ -13,8 +13,7 @@ public class Teste {
         nomes.adicionar("bentinho");
         nomes.remover(0);
 
-
-        System.out.println(nomes);
+        System.out.println(nomes.size());
 
     }
 }
