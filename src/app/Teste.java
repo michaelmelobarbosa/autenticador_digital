@@ -8,10 +8,10 @@ public class Teste {
 
         ListaDinamica<String> nomes = new ListaDinamica<>();
 
-        nomes.adicionar("mike");
-        nomes.adicionar("evna");
-        nomes.adicionar("bentinho");
-        nomes.remover(0);
+        nomes.add("mike");
+        nomes.add("evna");
+        nomes.add("bentinho");
+        nomes.remove(0);
 
         System.out.println(nomes.size());
 

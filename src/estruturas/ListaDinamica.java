@@ -7,7 +7,7 @@ public class ListaDinamica<T> {
     private NoLista<T> fim;
     private int tamanho;
 
-    public void adicionar(T valor) {
+    public void add(T valor) {
         NoLista<T> novo = new NoLista<>(valor);
 
         if (inicio == null) {
@@ -20,7 +20,7 @@ public class ListaDinamica<T> {
         tamanho++;
     }
 
-    public void remover(int indice){
+    public void remove(int indice){
         validarIndice(indice);
 
         if (indice == 0){

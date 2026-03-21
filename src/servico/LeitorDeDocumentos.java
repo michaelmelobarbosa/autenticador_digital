@@ -2,7 +2,7 @@ package servico;
 
 import estruturas.Arvore;
 import estruturas.ListaDinamica;
-import estruturas.NoArvore;
+import estruturas.PilhaArvore;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -11,8 +11,8 @@ import java.io.IOException;
 public class LeitorDeDocumentos {
 
 
-    public ListaDinamica<Arvore> leitorDeArquivo(String path) {
-        ListaDinamica<Arvore> arvores = new ListaDinamica<>();
+    public PilhaArvore leitorDeArquivo(String path) {
+        PilhaArvore pilhaArvore = new PilhaArvore();
 
         try (BufferedReader ler_Arquivo = new BufferedReader(new FileReader(path))) {
 
@@ -26,19 +26,19 @@ public class LeitorDeDocumentos {
                 ListaDinamica<String> linhaTratada = new ListaDinamica<>();
 
                 for (String palavra : palavras) {
-                    linhaTratada.adicionar(palavra);
+                    linhaTratada.add(palavra);
                 }
 
                 for (int i = linhaTratada.size() - 1; i >= 0; i--) {
                     arvore.inserir(linhaTratada.get(i));
                 }
 
-                arvores.adicionar(arvore);
+                pilhaArvore.push(arvore);
             }
         } catch (IOException e) {
             e.printStackTrace();
 
         }
-        return arvores;
+        return pilhaArvore;
     }
 }
