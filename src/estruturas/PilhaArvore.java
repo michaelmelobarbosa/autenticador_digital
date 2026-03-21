@@ -5,7 +5,7 @@ import java.util.EmptyStackException;
 public class PilhaArvore {
 
     private NoPilha topo;
-    public int tamanho;
+    private int tamanho;
 
 
     public PilhaArvore() {

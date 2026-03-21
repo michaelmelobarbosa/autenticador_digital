@@ -19,7 +19,9 @@ public class LeitorDeDocumentos {
             String linha;
 
             while ((linha = ler_Arquivo.readLine()) != null) {
-                Arvore arvore = new Arvore();
+
+                if(linha.trim().isEmpty()) continue;
+                Arvore arvoreDaLinha = new Arvore();
 
                 String[] palavras = linha.split("\\s+");
 
@@ -30,10 +32,10 @@ public class LeitorDeDocumentos {
                 }
 
                 for (int i = linhaTratada.size() - 1; i >= 0; i--) {
-                    arvore.inserir(linhaTratada.get(i));
+                    arvoreDaLinha.inserir(linhaTratada.get(i));
                 }
 
-                pilhaArvore.push(arvore);
+                pilhaArvore.push(arvoreDaLinha);
             }
         } catch (IOException e) {
             e.printStackTrace();
