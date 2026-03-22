@@ -1,19 +1,15 @@
 package app;
 
-import estruturas.ListaDinamica;
+import util.Encriptador;
+
+import java.security.NoSuchAlgorithmException;
 
 public class Teste {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoSuchAlgorithmException {
 
-        ListaDinamica<String> nomes = new ListaDinamica<>();
+        Encriptador en = new Encriptador();
 
-        nomes.add("mike");
-        nomes.add("evna");
-        nomes.add("bentinho");
-        nomes.remove(0);
-
-        System.out.println(nomes.size());
-
+        System.out.println(en.criptografarTexto("barbosa"));
     }
 }
