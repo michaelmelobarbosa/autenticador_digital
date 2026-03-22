@@ -6,6 +6,11 @@ import java.security.NoSuchAlgorithmException;
 public class GeradorHashSHA1 {
 
     public String hashTexto(String texto) {
+
+        if (texto == null) {
+            throw new IllegalArgumentException("Texto nao pode ser vazio");
+        }
+
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-1");
 
