@@ -10,6 +10,8 @@ public class Teste {
 
         GeradorHashSHA1 en = new GeradorHashSHA1();
 
-        System.out.println(en.hashTexto("mike"));
+        String texto = "Hello World!";
+
+        System.out.println("Hash de " + texto + " é: " + en.hashTexto(texto));
     }
 }
