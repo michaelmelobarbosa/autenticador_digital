@@ -1,10 +1,26 @@
 package estruturas;
 
 public class NoPilha {
-    Arvore dado;
-    NoPilha proximo;
+    private Arvore dado;
+    private NoPilha proximo;
 
-    NoPilha(Arvore dado) {
+    public NoPilha(Arvore dado) {
         this.dado = dado;
+    }
+
+    public Arvore getDado() {
+        return dado;
+    }
+
+    public void setDado(Arvore dado) {
+        this.dado = dado;
+    }
+
+    public NoPilha getProximo() {
+        return proximo;
+    }
+
+    public void setProximo(NoPilha proximo) {
+        this.proximo = proximo;
     }
 }

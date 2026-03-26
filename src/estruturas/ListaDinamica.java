@@ -14,7 +14,7 @@ public class ListaDinamica<T> {
             inicio = novo;
             fim = novo;
         } else {
-            fim.proximo = novo;
+            fim.setProximo(novo);
             fim = novo;
         }
         tamanho++;
@@ -24,7 +24,7 @@ public class ListaDinamica<T> {
         validarIndice(indice);
 
         if (indice == 0){
-            inicio = inicio.proximo;
+            inicio = inicio.getProximo();
             if (inicio == null){
                 fim = null;
             }
@@ -34,11 +34,11 @@ public class ListaDinamica<T> {
         }
         NoLista<T> anterior = inicio;
         for (int i = 0; i < indice - 1; i++) {
-            anterior = anterior.proximo;
+            anterior = anterior.getProximo();
         }
 
-        NoLista<T> removido = anterior.proximo;
-        anterior.proximo = removido.proximo;
+        NoLista<T> removido = anterior.getProximo();
+        anterior.setProximo(removido.getProximo());
 
         if (removido == fim) {
             fim = anterior;
@@ -66,9 +66,9 @@ public class ListaDinamica<T> {
 
         NoLista<T> atual = inicio;
         for (int i = 0; i < indice; i++) {
-            atual = atual.proximo;
+            atual = atual.getProximo();
         }
-        return atual.valor;
+        return atual.getValor();
     }
 
     @Override

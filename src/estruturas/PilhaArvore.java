@@ -10,12 +10,13 @@ public class PilhaArvore {
 
     public PilhaArvore() {
         topo = null;
+        tamanho = 0;
     }
 
 
     public void push(Arvore arvoreDaLinha) {
         NoPilha novoElemento = new NoPilha(arvoreDaLinha);
-        novoElemento.proximo = topo;
+        novoElemento.setProximo(topo);
         topo = novoElemento;
         tamanho++;
     }
@@ -26,8 +27,8 @@ public class PilhaArvore {
             throw new EmptyStackException();
         }
 
-        Arvore removida = topo.dado;
-        topo = topo.proximo;
+        Arvore removida = topo.getDado();
+        topo = topo.getProximo();
         tamanho--;
         return removida;
     }
@@ -40,7 +41,7 @@ public class PilhaArvore {
         if(estaVazia()){
             throw new EmptyStackException();
         }
-        return topo.dado;
+        return topo.getDado();
     }
 
     public int tamanho(){
