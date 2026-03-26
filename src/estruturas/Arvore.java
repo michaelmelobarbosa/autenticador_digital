@@ -1,10 +1,14 @@
 package estruturas;
 
+import util.GeradorHashSHA1;
+
 public class Arvore {
     private NoArvore raiz;
+    private GeradorHashSHA1 geradorHash;
 
     public Arvore() {
         this.raiz = null;
+        this.geradorHash = new GeradorHashSHA1();
     }
 
     public boolean isEmpty() {
@@ -126,5 +130,40 @@ public class Arvore {
         imprimirInOrder(atual.getEsquerda());
         System.out.println(atual.getValor());
         imprimirInOrder(atual.getDireita());
+    }
+
+    public String gerarHashRaiz() {
+        if (this.raiz == null) {
+            return null;
+        }
+        return calcularBaixoParaCima(this.raiz);
+    }
+
+    private String calcularBaixoParaCima(NoArvore no) {
+        if (no == null) {
+            return null;
+        }
+
+        String hashEsq = calcularBaixoParaCima(no.getEsquerda());
+        String hashDir = calcularBaixoParaCima(no.getDireita());
+
+        String hashProprio = geradorHash.hashTexto(no.getValor());
+
+        StringBuilder concatenacao = new StringBuilder();
+
+        if (hashEsq != null) {
+            concatenacao.append(hashEsq);
+        }
+        if (hashDir != null) {
+            concatenacao.append(hashDir);
+        }
+        concatenacao.append(hashProprio);
+
+
+        if (hashEsq == null && hashDir == null) {
+            return hashProprio;
+        }
+
+        return geradorHash.hashTexto(concatenacao.toString());
     }
 }

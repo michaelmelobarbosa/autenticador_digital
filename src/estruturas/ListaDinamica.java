@@ -1,7 +1,11 @@
 package estruturas;
 
 
-public class ListaDinamica<T> {
+import java.util.Iterator;
+import java.util.function.Consumer;
+
+
+public class ListaDinamica<T> implements Iterable<T> {
 
     private NoLista<T> inicio;
     private NoLista<T> fim;
@@ -72,6 +76,26 @@ public class ListaDinamica<T> {
     }
 
     @Override
+    public Iterator<T> iterator() {
+        return new ListaIterator();
+    }
+
+    public void forEachReverso(Consumer<T> acao) {
+        if (isEmpty()) return;
+
+        NoLista<T>[] array = (NoLista<T>[]) new NoLista[tamanho];
+        NoLista<T> atual = inicio;
+        for (int i = 0; i < tamanho; i++) {
+            array[i] = atual;
+            atual = atual.getProximo();
+        }
+
+        for (int i = tamanho - 1; i >= 0; i--) {
+            acao.accept(array[i].getValor());
+        }
+    }
+
+    @Override
     public String toString() {
         for (int i = 0; i < tamanho; i++) {
             System.out.println(get(i));
@@ -79,4 +103,21 @@ public class ListaDinamica<T> {
 
         return "";
     }
+
+    private class ListaIterator implements Iterator<T> {
+        private NoLista<T> atual = inicio;
+
+        @Override
+        public boolean hasNext() {
+            return atual != null;
+        }
+
+        @Override
+        public T next() {
+            T valor = atual.getValor();
+            atual = atual.getProximo();
+            return valor;
+        }
+    }
+
 }
