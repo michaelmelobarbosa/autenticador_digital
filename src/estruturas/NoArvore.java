@@ -1,6 +1,7 @@
 package estruturas;
 
 public class NoArvore {
+
     private String valor;
     private int altura;
     private NoArvore esquerda;
@@ -11,6 +12,12 @@ public class NoArvore {
         this.altura = 1;
         this.esquerda = null;
         this.direita = null;
+        public String hash;
+        public NoArvore esquerda;
+        public NoArvore direita;
+        public NoArvore(String hash){
+            this.hash = hash;
+        }
     }
 
     public String getValor() {

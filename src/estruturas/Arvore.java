@@ -1,9 +1,63 @@
 package estruturas;
 
+
+import util.GeradorHashSHA1;
+import java.util.ArrayList;
+
+
 public class Arvore {
+
     private NoArvore raiz;
 
-    public Arvore() {
+    public Arvore(ArrayList<String> hashes){
+        construir(hashes);
+      {
+        
+    private void contruir(ArrayList<String> hashes){
+        ArrayList<NoArvore> nos = new ArrayList<>();
+
+        for (String h : hashes) {
+            nos.add(new NoArvore(h));
+
+        }
+
+        while (nos.size() > 1) {
+            ArrayList<NoArvore> novos = new ArrayList<>();
+
+            for (int i = 0; i < nos.size(); i += 2) {
+                NoArvore esquerda = nos.get(i);
+                NoArvore direita;
+                
+                if (i + 1 < nos.size())
+                    direita = nos.get(i + 1);
+
+                else
+                    direita = esquerda;
+
+                String hashPai =
+                             GeradorHashSHA1.gerarHash(
+                                     esquerda.hash + direita.hash
+                             );
+
+             NoArvore pai = new NoArvore(hashPai);
+
+             pai.esquerda = esquerda;
+             pai.direita = direita;
+             
+             novos.add(pai);
+            }
+            nos = novos;
+        }
+
+        raiz = nos.get(0);
+
+    }   
+ 
+    public String getHashFinal() {
+        return raiz.hash;
+    }
+
+}
         this.raiz = null;
     }
 
@@ -65,6 +119,20 @@ public class Arvore {
 
         atualizarAltura(no);
         atualizarAltura(y);
+    
+        private void calcularHash(NoArvore no){
+            if (no == null) return;
+            String hashEsq = (no.getEsquerda() != null)
+            ? no.getEsquerda().hash
+            : "";
+
+            String hashDir = (no.getDireita() != null)
+            ? no.get.Direita().hash
+            : "";
+            
+            String combinado = hashEsq + hashDir + no.valor;
+            no.hash = GeradorHasSHA1.gerarHash(combinado);
+        }
 
         return y;
     }

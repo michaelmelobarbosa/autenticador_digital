@@ -6,7 +6,9 @@ import java.security.NoSuchAlgorithmException;
 
 public class GeradorHashSHA1 {
 
-    public String hashTexto(String texto) {
+    public static String gerarHash(String texto){
+
+    
 
         if (texto == null) {
             throw new IllegalArgumentException("Texto nao pode ser null");
@@ -15,14 +17,15 @@ public class GeradorHashSHA1 {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-1");
 
-            byte[] digest = md.digest(texto.getBytes(StandardCharsets.UTF_8));
+            byte[]  bytes = md.digest(texto.getBytes(StandardCharsets.UTF_8));
 
-            StringBuilder sb = new StringBuilder();
+            StringBuilder hash = new StringBuilder();
 
-            for (byte b : digest) {
-                sb.append(String.format("%02x", b & 0xff));
+            for (byte b : bytes) {
+                hash.append(String.format("%02x", b & 0xff));
+                 
             }
-            return sb.toString();
+            return hash.toString();
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("SHA-1 não disponível", e);
         }

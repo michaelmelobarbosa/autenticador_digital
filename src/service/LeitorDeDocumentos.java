@@ -1,5 +1,7 @@
-package servico;
+package service;
 
+import java.util.ArrayList;
+import util.GeradorHashSHA1;
 import estruturas.Arvore;
 import estruturas.ListaDinamica;
 import estruturas.PilhaArvore;
@@ -10,7 +12,9 @@ import java.io.IOException;
 
 public class LeitorDeDocumentos {
 
-
+    public static ArrayList<String> ler(String caminho){
+        ArrayList<String> hashes = new ArrayList<>();
+    
     public PilhaArvore leitorDeArquivo(String path) {
         PilhaArvore pilhaArvore = new PilhaArvore();
 
@@ -20,6 +24,11 @@ public class LeitorDeDocumentos {
 
             while ((linha = ler_Arquivo.readLine()) != null) {
 
+                String hash = GeradorHashSHA1.gerarHash(linha);
+                  
+                 hashes.add(hash);
+            }
+            
                 if(linha.trim().isEmpty()) continue;
                 Arvore arvoreDaLinha = new Arvore();
 
@@ -42,5 +51,6 @@ public class LeitorDeDocumentos {
 
         }
         return pilhaArvore;
+        return hashes;
     }
 }
