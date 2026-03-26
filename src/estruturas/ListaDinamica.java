@@ -80,20 +80,6 @@ public class ListaDinamica<T> implements Iterable<T> {
         return new ListaIterator();
     }
 
-    public void forEachReverso(Consumer<T> acao) {
-        if (isEmpty()) return;
-
-        NoLista<T>[] array = (NoLista<T>[]) new NoLista[tamanho];
-        NoLista<T> atual = inicio;
-        for (int i = 0; i < tamanho; i++) {
-            array[i] = atual;
-            atual = atual.getProximo();
-        }
-
-        for (int i = tamanho - 1; i >= 0; i--) {
-            acao.accept(array[i].getValor());
-        }
-    }
 
     @Override
     public String toString() {
