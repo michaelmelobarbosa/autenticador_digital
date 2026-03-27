@@ -10,7 +10,6 @@ import java.io.IOException;
 
 public class LeitorDeDocumentos {
 
-
     public PilhaArvore leitorDeArquivo(String path) {
         PilhaArvore pilhaArvore = new PilhaArvore();
 
@@ -20,7 +19,7 @@ public class LeitorDeDocumentos {
 
             while ((linha = ler_Arquivo.readLine()) != null) {
 
-                if(linha.trim().isEmpty()) continue;
+                if (linha.trim().isEmpty()) continue;
                 Arvore arvoreDaLinha = new Arvore();
 
                 String[] palavras = linha.split("\\s+");

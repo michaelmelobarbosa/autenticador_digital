@@ -148,22 +148,19 @@ public class Arvore {
         String hashDir = calcularBaixoParaCima(no.getDireita());
         String hashProprio = geradorHash.hashTexto(no.getValor());
 
-        // Folha - sem filhos
+
         if (hashEsq == null && hashDir == null) {
             return hashProprio;
         }
 
-        // Só filho esquerdo: hashFilho + hashNo
         if (hashEsq != null && hashDir == null) {
             return geradorHash.hashTexto(hashEsq + hashProprio);
         }
 
-        // Só filho direito: hashNo + hashFilho
         if (hashEsq == null && hashDir != null) {
             return geradorHash.hashTexto(hashProprio + hashDir);
         }
 
-        // Dois filhos: hashEsq + hashDir + hashProprio
         return geradorHash.hashTexto(hashEsq + hashDir + hashProprio);
     }
 }

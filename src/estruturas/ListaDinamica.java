@@ -2,7 +2,6 @@ package estruturas;
 
 
 import java.util.Iterator;
-import java.util.function.Consumer;
 
 
 public class ListaDinamica<T> implements Iterable<T> {
@@ -24,12 +23,12 @@ public class ListaDinamica<T> implements Iterable<T> {
         tamanho++;
     }
 
-    public void remove(int indice){
+    public void remove(int indice) {
         validarIndice(indice);
 
-        if (indice == 0){
+        if (indice == 0) {
             inicio = inicio.getProximo();
-            if (inicio == null){
+            if (inicio == null) {
                 fim = null;
             }
 
@@ -51,11 +50,11 @@ public class ListaDinamica<T> implements Iterable<T> {
         tamanho--;
     }
 
-    public int size(){
+    public int size() {
         return tamanho;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return tamanho == 0;
     }
 

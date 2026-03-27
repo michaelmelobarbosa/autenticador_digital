@@ -7,12 +7,10 @@ public class PilhaArvore {
     private NoPilha topo;
     private int tamanho;
 
-
     public PilhaArvore() {
         topo = null;
         tamanho = 0;
     }
-
 
     public void push(Arvore arvoreDaLinha) {
         NoPilha novoElemento = new NoPilha(arvoreDaLinha);
@@ -20,7 +18,6 @@ public class PilhaArvore {
         topo = novoElemento;
         tamanho++;
     }
-
 
     public Arvore pop() {
         if(estaVazia()){
