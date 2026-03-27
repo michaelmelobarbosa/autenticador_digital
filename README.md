@@ -16,25 +16,34 @@ Este projeto foi desenvolvido como trabalho vivencial para a disciplina de Estru
 ## Estruturas de Dados Implementadas
 
 ### Lista Dinâmica (`ListaDinamica<T>`)
-Implementação de lista encadeada simples com generics.
-- **Métodos:** `add()`, `remove()`, `get()`, `size()`, `isEmpty()`, `iterator()`, `forEachReverso()`
+Implementação de lista encadeada simples com generics e inner class.
+- **Inner class:** `No<T>`
+- **Métodos:** `adiciona()`, `remove()`, `obter()`, `tamanho()`, `estaVazia()`, `iterator()`, `toString()`
 - Não utiliza `java.util.LinkedList`
 
-### Árvore AVL (`Arvore`)
-Árvore binária de busca balanceada com rotação automática.
+### Árvore AVL (`ArvoreAVL`)
+Árvore binária de busca balanceada com rotação automática e inner class.
+- **Inner class:** `No`
+- **Métodos:** `estaVazia()`, `getRaiz()`, `setRaiz()`, `inserir()`, `imprimirInOrder()`, `gerarHashRaiz()`, `calcularBaixoParaCima()`
 - **Balanceamento:** Fator de balanceamento com rotações LL, RR, LR e RL
 - **Comparação:** Lexicográfica com `compareToIgnoreCase()`
 - **Inserção:** Ignora palavras duplicadas
+- **Hash:** Cálculo bottom-up com lógica específica para cada caso
 
-### Pilha (`PilhaArvore`)
-Implementação de pilha para armazenar árvores AVL.
-- **Métodos:** `push()`, `pop()`, `peek()`, `estaVazia()`, `tamanho()`
+### Pilha (`Pilha`)
+Implementação de pilha para armazenar árvores AVL com inner class.
+- **Inner class:** `No`
+- **Métodos:** `empilhar()`, `desempilhar()`, `estaVazia()`, `verTopo()`, `tamanho()`
 - Não utiliza `java.util.Stack`
 
 ### Gerador de Hash (`GeradorHashSHA1`)
 Utilitário para geração de hash SHA-1.
 - **Algoritmo:** SHA-1 via `java.security.MessageDigest`
 - **Saída:** String hexadecimal de 40 caracteres (lowercase)
+
+### Controle de Fluxo (`ControleDeFluxo`)
+Orquestra o fluxo principal da aplicação.
+- **Método principal:** `generateAuthCodes(String path)` → retorna `ListaDinamica<String>` com os hashes
 
 ---
 
@@ -87,7 +96,7 @@ javac -d out src/**/*.java src/*.java
 ### Execução
 
 ```bash
-java -cp out app.Teste
+java -cp out app.Aplicativo
 ```
 
 O programa espera um arquivo `AutenticadorDigital.txt` no diretório raiz do projeto.
@@ -109,22 +118,17 @@ O sistema foi validado com o seguinte caso de teste:
 AutenticadorDigital/
 ├── src/
 │   ├── app/
-│   │   ├── Aplicativo.java
-│   │   └── Teste.java
+│   │   └── Aplicativo.java
 │   ├── estruturas/
-│   │   ├── Arvore.java
-│   │   ├── ListaDinamica.java
-│   │   ├── PilhaArvore.java
-│   │   ├── NoArvore.java
-│   │   ├── NoLista.java
-│   │   └── NoPilha.java
+│   │   ├── ArvoreAVL.java      (inclui inner class No)
+│   │   ├── ListaDinamica.java (inclui inner class No<T> e ListaIterator)
+│   │   └── Pilha.java         (inclui inner class No)
 │   ├── servico/
 │   │   ├── ControleDeFluxo.java
 │   │   └── LeitorDeDocumentos.java
 │   └── util/
 │       └── GeradorHashSHA1.java
 ├── AutenticadorDigital.txt
-├── instructions.md
 └── README.md
 ```
 
@@ -132,4 +136,4 @@ AutenticadorDigital/
 
 ## Autor
 
-Projeto desenvolvido como trabalho da disciplina de Estruturas de Dados.
+Projeto desenvolvido em grupo como trabalho da disciplina de Estruturas de Dados.
