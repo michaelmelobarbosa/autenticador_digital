@@ -6,14 +6,16 @@ import estruturas.PilhaArvore;
 
 public class ControleDeFluxo {
 
-    public void processar(String path){
+    public ListaDinamica<String> processar(String path){
         LeitorDeDocumentos leitorDeDocumentos = new LeitorDeDocumentos();
         PilhaArvore pilhaArvore = leitorDeDocumentos.leitorDeArquivo(path);
+        ListaDinamica<String> hashs = new ListaDinamica<>();
 
         while (!pilhaArvore.estaVazia()) {
             Arvore arvore = pilhaArvore.pop();
             String hash = arvore.gerarHashRaiz();
-            System.out.println(hash);
+            hashs.add(hash);
         }
+        return hashs;
     }
 }
