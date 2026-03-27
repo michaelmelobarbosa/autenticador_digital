@@ -1,8 +1,8 @@
 package servico;
 
-import estruturas.Arvore;
+import estruturas.ArvoreAVL;
 import estruturas.ListaDinamica;
-import estruturas.PilhaArvore;
+import estruturas.Pilha;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -10,8 +10,8 @@ import java.io.IOException;
 
 public class LeitorDeDocumentos {
 
-    public PilhaArvore leitorDeArquivo(String path) {
-        PilhaArvore pilhaArvore = new PilhaArvore();
+    public Pilha leitorDeArquivo(String path) {
+        Pilha pilha = new Pilha();
 
         try (BufferedReader ler_Arquivo = new BufferedReader(new FileReader(path))) {
 
@@ -20,7 +20,7 @@ public class LeitorDeDocumentos {
             while ((linha = ler_Arquivo.readLine()) != null) {
 
                 if (linha.trim().isEmpty()) continue;
-                Arvore arvoreDaLinha = new Arvore();
+                ArvoreAVL arvoreAVLDaLinha = new ArvoreAVL();
 
                 String[] palavras = linha.split("\\s+");
 
@@ -31,15 +31,15 @@ public class LeitorDeDocumentos {
                 }
 
                 for (int i = linhaTratada.size() - 1; i >= 0; i--) {
-                    arvoreDaLinha.inserir(linhaTratada.get(i));
+                    arvoreAVLDaLinha.inserir(linhaTratada.get(i));
                 }
 
-                pilhaArvore.push(arvoreDaLinha);
+                pilha.push(arvoreAVLDaLinha);
             }
         } catch (IOException e) {
             e.printStackTrace();
 
         }
-        return pilhaArvore;
+        return pilha;
     }
 }

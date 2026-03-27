@@ -6,12 +6,41 @@ import java.util.Iterator;
 
 public class ListaDinamica<T> implements Iterable<T> {
 
-    private NoLista<T> inicio;
-    private NoLista<T> fim;
+    private No<T> inicio;
+    private No<T> fim;
     private int tamanho;
 
+
+    private class No<T> {
+
+        private T valor;
+        private No<T> proximo;
+
+        public No(T valor) {
+            this.valor = valor;
+        }
+
+        public T getValor() {
+            return valor;
+        }
+
+        public void setValor(T valor) {
+            this.valor = valor;
+        }
+
+        public No<T> getProximo() {
+            return proximo;
+        }
+
+        public void setProximo(No<T> proximo) {
+            this.proximo = proximo;
+        }
+
+    }
+    
+
     public void add(T valor) {
-        NoLista<T> novo = new NoLista<>(valor);
+        No<T> novo = new No<>(valor);
 
         if (inicio == null) {
             inicio = novo;
@@ -35,12 +64,12 @@ public class ListaDinamica<T> implements Iterable<T> {
             tamanho--;
             return;
         }
-        NoLista<T> anterior = inicio;
+        No<T> anterior = inicio;
         for (int i = 0; i < indice - 1; i++) {
             anterior = anterior.getProximo();
         }
 
-        NoLista<T> removido = anterior.getProximo();
+        No<T> removido = anterior.getProximo();
         anterior.setProximo(removido.getProximo());
 
         if (removido == fim) {
@@ -67,7 +96,7 @@ public class ListaDinamica<T> implements Iterable<T> {
     public T get(int indice) {
         validarIndice(indice);
 
-        NoLista<T> atual = inicio;
+        No<T> atual = inicio;
         for (int i = 0; i < indice; i++) {
             atual = atual.getProximo();
         }
@@ -90,7 +119,7 @@ public class ListaDinamica<T> implements Iterable<T> {
     }
 
     private class ListaIterator implements Iterator<T> {
-        private NoLista<T> atual = inicio;
+        private No<T> atual = inicio;
 
         @Override
         public boolean hasNext() {

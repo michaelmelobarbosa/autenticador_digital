@@ -2,11 +2,58 @@ package estruturas;
 
 import util.GeradorHashSHA1;
 
-public class Arvore {
-    private NoArvore raiz;
-    private GeradorHashSHA1 geradorHash;
+public class ArvoreAVL {
+    private No raiz;
+    private final GeradorHashSHA1 geradorHash;
 
-    public Arvore() {
+
+    public class No {
+        private String valor;
+        private int altura;
+        private No esquerda;
+        private No direita;
+
+        public No(String valor) {
+            this.valor = valor;
+            this.altura = 1;
+            this.esquerda = null;
+            this.direita = null;
+        }
+
+        public String getValor() {
+            return valor;
+        }
+
+        public void setValor(String valor) {
+            this.valor = valor;
+        }
+
+        public int getAltura() {
+            return altura;
+        }
+
+        public void setAltura(int altura) {
+            this.altura = altura;
+        }
+
+        public No getEsquerda() {
+            return esquerda;
+        }
+
+        public void setEsquerda(No esquerda) {
+            this.esquerda = esquerda;
+        }
+
+        public No getDireita() {
+            return direita;
+        }
+
+        public void setDireita(No direita) {
+            this.direita = direita;
+        }
+    }
+
+    public ArvoreAVL() {
         this.raiz = null;
         this.geradorHash = new GeradorHashSHA1();
     }
@@ -15,29 +62,29 @@ public class Arvore {
         return this.raiz == null;
     }
 
-    public NoArvore getRaiz() {
+    public No getRaiz() {
         return raiz;
     }
 
-    public void setRaiz(NoArvore raiz) {
+    public void setRaiz(No raiz) {
         this.raiz = raiz;
     }
 
-    private int altura(NoArvore no) {
+    private int altura(No no) {
         if (no == null) {
             return 0;
         }
         return no.getAltura();
     }
 
-    private int fatorBalanceamento(NoArvore no) {
+    private int fatorBalanceamento(No no) {
         if (no == null) {
             return 0;
         }
         return altura(no.getEsquerda()) - altura(no.getDireita());
     }
 
-    private void atualizarAltura(NoArvore no) {
+    private void atualizarAltura(No no) {
         if (no == null) {
             return;
         }
@@ -47,9 +94,9 @@ public class Arvore {
         no.setAltura(Math.max(alturaEsq, alturaDir) + 1);
     }
 
-    private NoArvore rotacaoDireita(NoArvore no) {
-        NoArvore x = no.getEsquerda();
-        NoArvore T2 = x.getDireita();
+    private No rotacaoDireita(No no) {
+        No x = no.getEsquerda();
+        No T2 = x.getDireita();
 
         x.setDireita(no);
         no.setEsquerda(T2);
@@ -60,9 +107,9 @@ public class Arvore {
         return x;
     }
 
-    private NoArvore rotacaoEsquerda(NoArvore no) {
-        NoArvore y = no.getDireita();
-        NoArvore T2 = y.getEsquerda();
+    private No rotacaoEsquerda(No no) {
+        No y = no.getDireita();
+        No T2 = y.getEsquerda();
 
         y.setEsquerda(no);
         no.setDireita(T2);
@@ -73,7 +120,7 @@ public class Arvore {
         return y;
     }
 
-    private NoArvore balancear(NoArvore no) {
+    private No balancear(No no) {
         atualizarAltura(no);
         int fb = fatorBalanceamento(no);
 
@@ -101,9 +148,9 @@ public class Arvore {
         this.raiz = inserirRec(this.raiz, valor.trim());
     }
 
-    private NoArvore inserirRec(NoArvore atual, String novoValor) {
+    private No inserirRec(No atual, String novoValor) {
         if (atual == null) {
-            return new NoArvore(novoValor);
+            return new No(novoValor);
         }
 
         int comparacao = novoValor.compareToIgnoreCase(atual.getValor());
@@ -123,7 +170,7 @@ public class Arvore {
         imprimirInOrder(this.raiz);
     }
 
-    private void imprimirInOrder(NoArvore atual) {
+    private void imprimirInOrder(No atual) {
         if (atual == null) {
             return;
         }
@@ -139,7 +186,7 @@ public class Arvore {
         return calcularBaixoParaCima(this.raiz);
     }
 
-    private String calcularBaixoParaCima(NoArvore no) {
+    private String calcularBaixoParaCima(No no) {
         if (no == null) {
             return null;
         }

@@ -1,19 +1,19 @@
 package servico;
 
-import estruturas.Arvore;
+import estruturas.ArvoreAVL;
 import estruturas.ListaDinamica;
-import estruturas.PilhaArvore;
+import estruturas.Pilha;
 
 public class ControleDeFluxo {
 
     public ListaDinamica<String> processar(String path) {
         LeitorDeDocumentos leitorDeDocumentos = new LeitorDeDocumentos();
-        PilhaArvore pilhaArvore = leitorDeDocumentos.leitorDeArquivo(path);
+        Pilha pilha = leitorDeDocumentos.leitorDeArquivo(path);
         ListaDinamica<String> hashs = new ListaDinamica<>();
 
-        while (!pilhaArvore.estaVazia()) {
-            Arvore arvore = pilhaArvore.pop();
-            String hash = arvore.gerarHashRaiz();
+        while (!pilha.estaVazia()) {
+            ArvoreAVL arvoreAVL = pilha.pop();
+            String hash = arvoreAVL.gerarHashRaiz();
             hashs.add(hash);
         }
         return hashs;
