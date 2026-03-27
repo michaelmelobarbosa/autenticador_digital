@@ -8,7 +8,7 @@ public class Aplicativo {
 
         String path = "AutenticadorDigital.txt";
 
-        System.out.println("####----AUTENTICADOR DIGITAL----####\n");
+        System.out.println("\n####----AUTENTICADOR DIGITAL----####\n");
         System.out.println("Gerando hashs do documento... \n");
 
         ControleDeFluxo controleDeFluxo = new ControleDeFluxo();
@@ -17,6 +17,6 @@ public class Aplicativo {
         for (String hash : hashs) {
             System.out.println(hash);
         }
-        System.out.println("\n####----AUTENTICADOR DIGITAL----####");
+        System.out.println("\n########--------FIM--------########");
     }
 }
