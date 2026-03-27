@@ -43,7 +43,7 @@ Utilitário para geração de hash SHA-1.
 
 ### Controle de Fluxo (`ControleDeFluxo`)
 Orquestra o fluxo principal da aplicação.
-- **Método principal:** `generateAuthCodes(String path)` → retorna `ListaDinamica<String>` com os hashes
+- **Método principal:** `processar(String path)` → retorna `ListaDinamica<String>` com os hashes
 
 ---
 
@@ -134,6 +134,6 @@ AutenticadorDigital/
 
 ---
 
-## Autor
+## Autores
 
 Projeto desenvolvido em grupo como trabalho da disciplina de Estruturas de Dados.
