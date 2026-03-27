@@ -12,9 +12,9 @@ public class ControleDeFluxo {
         ListaDinamica<String> hashs = new ListaDinamica<>();
 
         while (!pilha.estaVazia()) {
-            ArvoreAVL arvoreAVL = pilha.pop();
+            ArvoreAVL arvoreAVL = pilha.desempilhar();
             String hash = arvoreAVL.gerarHashRaiz();
-            hashs.add(hash);
+            hashs.adiciona(hash);
         }
         return hashs;
     }

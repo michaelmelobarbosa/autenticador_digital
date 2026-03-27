@@ -39,7 +39,7 @@ public class ListaDinamica<T> implements Iterable<T> {
     }
     
 
-    public void add(T valor) {
+    public void adiciona(T valor) {
         No<T> novo = new No<>(valor);
 
         if (inicio == null) {
@@ -79,11 +79,11 @@ public class ListaDinamica<T> implements Iterable<T> {
         tamanho--;
     }
 
-    public int size() {
+    public int tamanho() {
         return tamanho;
     }
 
-    public boolean isEmpty() {
+    public boolean estaVazia() {
         return tamanho == 0;
     }
 
@@ -93,7 +93,7 @@ public class ListaDinamica<T> implements Iterable<T> {
         }
     }
 
-    public T get(int indice) {
+    public T obter(int indice) {
         validarIndice(indice);
 
         No<T> atual = inicio;
@@ -112,7 +112,7 @@ public class ListaDinamica<T> implements Iterable<T> {
     @Override
     public String toString() {
         for (int i = 0; i < tamanho; i++) {
-            System.out.println(get(i));
+            System.out.println(obter(i));
         }
 
         return "";

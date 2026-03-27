@@ -7,7 +7,7 @@ public class ArvoreAVL {
     private final GeradorHashSHA1 geradorHash;
 
 
-    public class No {
+    private class No {
         private String valor;
         private int altura;
         private No esquerda;
@@ -58,7 +58,7 @@ public class ArvoreAVL {
         this.geradorHash = new GeradorHashSHA1();
     }
 
-    public boolean isEmpty() {
+    public boolean estaVazia() {
         return this.raiz == null;
     }
 

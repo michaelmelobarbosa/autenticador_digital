@@ -39,14 +39,14 @@ public class Pilha {
         tamanho = 0;
     }
 
-    public void push(ArvoreAVL arvoreAVLDaLinha) {
+    public void empilhar(ArvoreAVL arvoreAVLDaLinha) {
         No novoElemento = new No(arvoreAVLDaLinha);
         novoElemento.setProximo(topo);
         topo = novoElemento;
         tamanho++;
     }
 
-    public ArvoreAVL pop() {
+    public ArvoreAVL desempilhar() {
         if(estaVazia()){
             throw new EmptyStackException();
         }
@@ -61,7 +61,7 @@ public class Pilha {
         return topo == null;
     }
 
-    public ArvoreAVL peek(){
+    public ArvoreAVL verTopo(){
         if(estaVazia()){
             throw new EmptyStackException();
         }

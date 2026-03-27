@@ -27,14 +27,14 @@ public class LeitorDeDocumentos {
                 ListaDinamica<String> linhaTratada = new ListaDinamica<>();
 
                 for (String palavra : palavras) {
-                    linhaTratada.add(palavra);
+                    linhaTratada.adiciona(palavra);
                 }
 
-                for (int i = linhaTratada.size() - 1; i >= 0; i--) {
-                    arvoreAVLDaLinha.inserir(linhaTratada.get(i));
+                for (int i = linhaTratada.tamanho() - 1; i >= 0; i--) {
+                    arvoreAVLDaLinha.inserir(linhaTratada.obter(i));
                 }
 
-                pilha.push(arvoreAVLDaLinha);
+                pilha.empilhar(arvoreAVLDaLinha);
             }
         } catch (IOException e) {
             e.printStackTrace();
