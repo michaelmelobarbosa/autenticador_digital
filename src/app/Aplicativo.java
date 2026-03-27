@@ -17,6 +17,6 @@ public class Aplicativo {
         for (String hash : hashs) {
             System.out.println(hash);
         }
-
+        System.out.println("\n####----AUTENTICADOR DIGITAL----####");
     }
 }
