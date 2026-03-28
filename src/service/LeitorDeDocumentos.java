@@ -1,10 +1,8 @@
-package service;
+package servico;
 
-import java.util.ArrayList;
-import util.GeradorHashSHA1;
-import estruturas.Arvore;
+import estruturas.ArvoreAVL;
 import estruturas.ListaDinamica;
-import estruturas.PilhaArvore;
+import estruturas.Pilha;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,11 +10,8 @@ import java.io.IOException;
 
 public class LeitorDeDocumentos {
 
-    public static ArrayList<String> ler(String caminho){
-        ArrayList<String> hashes = new ArrayList<>();
-    
-    public PilhaArvore leitorDeArquivo(String path) {
-        PilhaArvore pilhaArvore = new PilhaArvore();
+    public Pilha leitorDeArquivo(String path) {
+        Pilha pilha = new Pilha();
 
         try (BufferedReader ler_Arquivo = new BufferedReader(new FileReader(path))) {
 
@@ -24,33 +19,27 @@ public class LeitorDeDocumentos {
 
             while ((linha = ler_Arquivo.readLine()) != null) {
 
-                String hash = GeradorHashSHA1.gerarHash(linha);
-                  
-                 hashes.add(hash);
-            }
-            
-                if(linha.trim().isEmpty()) continue;
-                Arvore arvoreDaLinha = new Arvore();
+                if (linha.trim().isEmpty()) continue;
+                ArvoreAVL arvoreAVLDaLinha = new ArvoreAVL();
 
                 String[] palavras = linha.split("\\s+");
 
                 ListaDinamica<String> linhaTratada = new ListaDinamica<>();
 
                 for (String palavra : palavras) {
-                    linhaTratada.add(palavra);
+                    linhaTratada.adiciona(palavra);
                 }
 
-                for (int i = linhaTratada.size() - 1; i >= 0; i--) {
-                    arvoreDaLinha.inserir(linhaTratada.get(i));
+                for (int i = linhaTratada.tamanho() - 1; i >= 0; i--) {
+                    arvoreAVLDaLinha.inserir(linhaTratada.obter(i));
                 }
 
-                pilhaArvore.push(arvoreDaLinha);
+                pilha.empilhar(arvoreAVLDaLinha);
             }
         } catch (IOException e) {
             e.printStackTrace();
 
         }
-        return pilhaArvore;
-        return hashes;
+        return pilha;
     }
 }

@@ -1,44 +1,76 @@
 package estruturas;
 
 
-public class ListaDinamica<T> {
+import java.util.Iterator;
 
-    private NoLista<T> inicio;
-    private NoLista<T> fim;
+
+public class ListaDinamica<T> implements Iterable<T> {
+
+    private No<T> inicio;
+    private No<T> fim;
     private int tamanho;
 
-    public void add(T valor) {
-        NoLista<T> novo = new NoLista<>(valor);
+
+    private class No<T> {
+
+        private T valor;
+        private No<T> proximo;
+
+        public No(T valor) {
+            this.valor = valor;
+        }
+
+        public T getValor() {
+            return valor;
+        }
+
+        public void setValor(T valor) {
+            this.valor = valor;
+        }
+
+        public No<T> getProximo() {
+            return proximo;
+        }
+
+        public void setProximo(No<T> proximo) {
+            this.proximo = proximo;
+        }
+
+    }
+    
+
+    public void adiciona(T valor) {
+        No<T> novo = new No<>(valor);
 
         if (inicio == null) {
             inicio = novo;
             fim = novo;
         } else {
-            fim.proximo = novo;
+            fim.setProximo(novo);
             fim = novo;
         }
         tamanho++;
     }
 
-    public void remove(int indice){
+    public void remove(int indice) {
         validarIndice(indice);
 
-        if (indice == 0){
-            inicio = inicio.proximo;
-            if (inicio == null){
+        if (indice == 0) {
+            inicio = inicio.getProximo();
+            if (inicio == null) {
                 fim = null;
             }
 
             tamanho--;
             return;
         }
-        NoLista<T> anterior = inicio;
+        No<T> anterior = inicio;
         for (int i = 0; i < indice - 1; i++) {
-            anterior = anterior.proximo;
+            anterior = anterior.getProximo();
         }
 
-        NoLista<T> removido = anterior.proximo;
-        anterior.proximo = removido.proximo;
+        No<T> removido = anterior.getProximo();
+        anterior.setProximo(removido.getProximo());
 
         if (removido == fim) {
             fim = anterior;
@@ -47,11 +79,11 @@ public class ListaDinamica<T> {
         tamanho--;
     }
 
-    public int size(){
+    public int tamanho() {
         return tamanho;
     }
 
-    public boolean isEmpty(){
+    public boolean estaVazia() {
         return tamanho == 0;
     }
 
@@ -61,22 +93,45 @@ public class ListaDinamica<T> {
         }
     }
 
-    public T get(int indice) {
+    public T obter(int indice) {
         validarIndice(indice);
 
-        NoLista<T> atual = inicio;
+        No<T> atual = inicio;
         for (int i = 0; i < indice; i++) {
-            atual = atual.proximo;
+            atual = atual.getProximo();
         }
-        return atual.valor;
+        return atual.getValor();
     }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new ListaIterator();
+    }
+
 
     @Override
     public String toString() {
         for (int i = 0; i < tamanho; i++) {
-            System.out.println(get(i));
+            System.out.println(obter(i));
         }
 
         return "";
     }
+
+    private class ListaIterator implements Iterator<T> {
+        private No<T> atual = inicio;
+
+        @Override
+        public boolean hasNext() {
+            return atual != null;
+        }
+
+        @Override
+        public T next() {
+            T valor = atual.getValor();
+            atual = atual.getProximo();
+            return valor;
+        }
+    }
+
 }
