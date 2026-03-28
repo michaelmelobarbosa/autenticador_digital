@@ -6,7 +6,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class GeradorHashSHA1 {
 
-    public static String gerarHash(String texto){
+    public static String hashTexto(String texto){
 
     
 

@@ -1,9 +1,9 @@
-package servico;
+package service;
 
 import estruturas.ArvoreAVL;
 import estruturas.ListaDinamica;
 import estruturas.Pilha;
-import service.LeitorDeDocumentos;
+
 
 public class ControleDeFluxo {
 

@@ -1,7 +1,7 @@
 package app;
 
 import estruturas.ListaDinamica;
-import servico.ControleDeFluxo;
+import service.ControleDeFluxo;
 
 public class Aplicativo {
     public static void main(String[] args) {
