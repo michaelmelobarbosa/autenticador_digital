@@ -8,8 +8,6 @@ public class GeradorHashSHA1 {
 
     public static String hashTexto(String texto){
 
-    
-
         if (texto == null) {
             throw new IllegalArgumentException("Texto nao pode ser null");
         }
@@ -23,7 +21,6 @@ public class GeradorHashSHA1 {
 
             for (byte b : bytes) {
                 hash.append(String.format("%02x", b & 0xff));
-                 
             }
             return hash.toString();
         } catch (NoSuchAlgorithmException e) {
