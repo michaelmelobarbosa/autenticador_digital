@@ -1,16 +1,48 @@
-Ela é Ar.
-Ele é Fogo.
-Seus elementos — e seus destinos — estão prestes a se entrelaçar.
-Wind Weaver: a guardiã do vento é uma romantasia repleta de ação de tirar o fôlego e romance envolvente, perfeita para fãs de Sarah J. Maas e Avatar: o último mestre do ar.
-A pré-venda, com tiragem limitada, acompanha um marcador de páginas, três cards e um pingente.
-Todos os habitantes de Anwyvn têm pavor de magia, e um ser mágico como a halfling Rhya Fleetwood é condenado à morte assim que é descoberto.
-Prestes a ser executada, Rhya é surpreendida por uma pessoa improvável: o misterioso e mercenário Comandante Scythe, um homem muito mais perigoso do que qualquer assassino de halflings.
-Nas mãos desse novo inimigo, Rhya precisa lutar pela própria vida nos terrenos áridos das Terras do Norte.
-No entanto, quanto mais se distancia de casa, mais ela percebe que nada é o que parece — nem seu terrível captor, nem a praga que destrói o reino, e muito menos ela mesma.
-Porém, Rhya descobre que não é uma halfling comum.
-A estranha marca de nascença que carrega no peito e o poder de invocar ventos só pode significar uma coisa: ela é uma Remanescente, uma das quatro almas espalhadas por Anwyvn,
-destinada a restaurar o equilíbrio da magia… ou morrer tentando.
-Além de estar preocupada em manter-se viva e com a missão de dominar seu poder, Rhya sente nascer uma paixão avassaladora pelo Comandante, um homem que, quando enfim sua verdadeira
-identidade é revelada, ela não sabe se pode confiar e que age apenas em função dos próprios interesses.
-Em meio ao sentimento que queima de maneira tão intensa quanto a ventania que ruge dentro de si, ela precisará fazer uma escolha: apagar as chamas ou deixar que a consumam.
-Wind Weaver: a guardião do vento é o primeiro volume da série Reino dos Remanescentes.
+No começo do projeto foi pensado na estruturação da lógica de arquitetura em camadas (Layered Architecture), organizado
+em quatro pacotes com responsabilidades bem delimitadas. Uma preocupação constante foi pensar no Princípio da
+Responsabilidade Única (Single Responsibility Principle — SRP), como boa prática norteadora, para garantir a
+modularização e o baixo acoplamento.
+Quanto à disposição das camadas do projeto temos: camada "app/" a qual concentra a orquestração e execução da
+aplicação. A camada "servico/" que encapsula a lógica de processamento, incluindo leitura e o tratamento dos
+documentos de entrada. A camada de "estruturas/" que recebe as implementações das classes de estrutura dados
+criados "manualmente", sem uso de coleções nativas do java. Nessa camada estão as classes de Lista Dinâmica,
+Árvore AVL (com balanceamento automático) e Pilha Encadeada. Adicionalmente, foi criado um pacote "útil/",
+o qual fornece funções auxiliares, como a geração de hashes SHA-1. Além disso foram utilizadas classes internas
+para representar os nós para cada classe de estrutura de dados.
+A linha inicial da implementação do projeto "AutenticadorDigital", inicia na obtenção e processamento inicial na
+coleta de dados. Como requisito do sistema, a coleta de dados é obtida através da leitura de um arquivo
+textual em TXT na classe "LeitorDeDocumento.Java". Com as estruturas ListaDinamica, ArvoreAVL e Pilha feitas
+foi importado para a organização do programa. E então é utilizado a estrutura "while" com o seguinte código:
+((linha = ler_Arquivo.readLine()) != null) para efeturar a quebra de linha.
+Na implementação da Árvore AVL para o projeto, foi desenvolvido a classe "ArvoreAVL" em Java com uma inner
+class No para representar cada nó. Cada nó guarda o valor (uma palavra), a altura e as referências para a
+sub-árvore esquerda e direita. A inserção é feita de modo recursivo pelo método inserirRec, que compara os
+valores usando compareToIgnoreCase para ignorar palavras repetidas e não diferenciar maiúsculas de minúsculas.
+Depois de inserir, é atualizado a altura do nó e é feito o cálculo do fator de balanceamento (FB = altura da
+esquerda menos altura da direita). Se o valor absoluto do FB for maior que 1, o método balancear aplica
+rotações: para casos LL ou LR, é usada rotacaoDireita (com rotação dupla se for LR); para RR ou RL,
+usa-se rotacaoEsquerda (com dupla se RL). Por fim, o hash SHA-1 é calculado de baixo para cima no método
+calcularBaixoParaCima, de forma recursiva: para nó folha, SHA1 do valor; só esquerda, SHA1(hash_esquerda +
+hash_nó); só direita, SHA1(hash_nó + hash_direita); com ambos, SHA1(hash_esquerda + hash_direita + hash_nó).
+A metodologia adotada para a integração entre as estruturas de dados no projeto baseou-se no conceito de Pipeline
+de Processamento, ou seja, dividiu-se a tarefa em etapas menores que dependem uma da outra. Inicialmente, o
+arquivo é processado linha por linha e, suas palavras, são separadas e armazenadas em uma lista dinâmica.
+Essa lista permite organizar os dados em sequência e facilita o acesso aos elementos, servindo de base para as
+etapas seguintes do processamento. Em seguida, as palavras armazenadas na lista são inseridas em uma árvore.
+Essa inserção é feita em ordem reversa, ou seja, do último elemento da lista até o primeiro. Após a construção
+da árvore correspondente a cada linha do texto, a estrutura é inserida em uma pilha. A pilha segue o princípio
+LIFO (Last-in, First-Out), logo a última árvore a ser inserida, será a primeira a ser removida. Dessa forma,
+o fluxo de processamento ocorre da seguinte forma: Lista Dinâmica - Árvore - Pilha. Na classe Pilha tem uma
+classe interna (No). Essa classe interna é quem segura a árvore AVL onde tem um proneorp próximo para conectar
+com o elemento de baixo feito para manter o encapsulamento. O construtor da Pilha inicia o topo como Null e a
+classe interna tem os getter e setters para o dado e para o próximo nó. Foi implementado os métodos push e pop
+e a lógica de inserção reversa com o for além de implementar um método de exceção para não ler linhas vazias.
+O sistema foi desenvolvido em linguagem Java, utilizando leitura de arquivo textual linha por linha como fonte de
+dados para processamento criptográfico. Inicialmente, o programa realiza a leitura do documento digital por meio
+de um mecanismo de entrada de dados, separando cada linha como uma unidade independente de informação. Para
+cada linha lida, é aplicada a função de dispersão Criptográfica SHA-1, responsável por gerar um resumo
+criptográfico único de 160 bits. Esse processo assegura que mesmo pequenas alterações no conteúdo original
+resultem em valores hash completamente diferentes, característica essencial para validação de integridade. Após
+a geração dos hashes individuais, o sistema organiza esses valores em uma estrutura de árvore hash. Cada hash
+gerado nas folhas da árvore representa diretamente uma linha do documento. Em seguida, os hashes filhos são
+concatenados e submetidos novamente ao algoritmo SHA-1 para criação dos nós intermediários.
