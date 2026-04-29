@@ -7,7 +7,7 @@ public class ArvoreAVL {
     private final GeradorHashSHA1 geradorHash;
 
 
-    class No {
+    public static class No {
         private String valor;
         private int altura;
         private No esquerda;

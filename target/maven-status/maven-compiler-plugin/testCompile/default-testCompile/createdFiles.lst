@@ -1,3 +1,5 @@
+service\LeitorDeDocumentosTest.class
+service\ControleDeFluxoTest.class
 estruturas\ListaDinamicaTest.class
 estruturas\PilhaTest.class
 estruturas\ArvoreAVLTest.class
