@@ -123,13 +123,62 @@ AutenticadorDigital/
 │   │   ├── ArvoreAVL.java      (inclui inner class No)
 │   │   ├── ListaDinamica.java (inclui inner class No<T> e ListaIterator)
 │   │   └── Pilha.java         (inclui inner class No)
-│   ├── servico/
+│   ├── service/
 │   │   ├── ControleDeFluxo.java
 │   │   └── LeitorDeDocumentos.java
 │   └── util/
 │       └── GeradorHashSHA1.java
+├── test/
+│   ├── estruturas/
+│   │   ├── ArvoreAVLTest.java
+│   │   ├── ListaDinamicaTest.java
+│   │   └── PilhaTest.java
+│   ├── service/
+│   │   ├── ControleDeFluxoTest.java
+│   │   └── LeitorDeDocumentosTest.java
+│   └── util/
+│       └── GeradorHashSHA1Test.java
+├── pom.xml
 ├── AutenticadorDigital.txt
 └── README.md
+```
+
+---
+
+## Tecnologias
+
+- **Linguagem:** Java 11
+- **Build Tool:** Maven 3.9+
+- **Frameworks de Teste:**
+  - JUnit 5.10.2 (testes unitários e de integração)
+  - Mockito 5.8.0 (mocking)
+
+---
+
+## Testes
+
+### Testes Unitários
+
+| Classe | Arquivo | Qtd Testes |
+|--------|---------|------------|
+| ListaDinamica | `test/estruturas/ListaDinamicaTest.java` | 11 |
+| ArvoreAVL | `test/estruturas/ArvoreAVLTest.java` | 16 |
+| Pilha | `test/estruturas/PilhaTest.java` | 9 |
+| GeradorHashSHA1 | `test/util/GeradorHashSHA1Test.java` | 12 |
+
+### Testes de Integração
+
+| Classe | Arquivo | Qtd Testes |
+|--------|---------|------------|
+| LeitorDeDocumentos | `test/service/LeitorDeDocumentosTest.java` | 7 |
+| ControleDeFluxo | `test/service/ControleDeFluxoTest.java` | 7 |
+
+**Total: 62 testes**
+
+### Como Executar os Testes
+
+```bash
+mvn test
 ```
 
 ---
