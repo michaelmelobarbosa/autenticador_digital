@@ -1,0 +1,11 @@
+estruturas\ListaDinamica$No.class
+util\GeradorHashSHA1.class
+estruturas\ArvoreAVL$No.class
+estruturas\Pilha$No.class
+estruturas\Pilha.class
+app\Aplicativo.class
+estruturas\ArvoreAVL.class
+estruturas\ListaDinamica.class
+service\ControleDeFluxo.class
+estruturas\ListaDinamica$ListaIterator.class
+service\LeitorDeDocumentos.class

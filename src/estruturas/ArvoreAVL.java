@@ -7,7 +7,7 @@ public class ArvoreAVL {
     private final GeradorHashSHA1 geradorHash;
 
 
-    private class No {
+    class No {
         private String valor;
         private int altura;
         private No esquerda;
@@ -68,6 +68,15 @@ public class ArvoreAVL {
 
     public void setRaiz(No raiz) {
         this.raiz = raiz;
+    }
+
+    public int tamanho() {
+        return tamanho(raiz);
+    }
+
+    private int tamanho(No no) {
+        if (no == null) return 0;
+        return 1 + tamanho(no.getEsquerda()) + tamanho(no.getDireita());
     }
 
     private int altura(No no) {
